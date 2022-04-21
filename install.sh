@@ -211,7 +211,7 @@ EOF
  # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" ./config.yml
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
   sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml
-  sed -i "s|CertDomain:.*|CertDomain: ${CertDomain}|" ./config.yml
+  sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
 
   }
 

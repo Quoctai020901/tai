@@ -374,7 +374,7 @@ caidat_xrayr() {
 # Initialization step
 clear
 while true; do
-  echo "-----XrayR của Tài Copy -----"
+  echo "-----XrayR của Tài  -----"
   echo "Địa chỉ dự án và tài liệu trợ giúp: Chưa nghĩ ra  "
   echo "Vui lòng nhập một số để Thực Hiện Câu Lệnh:"
   for ((i = 1; i <= ${#operation[@]}; i++)); do

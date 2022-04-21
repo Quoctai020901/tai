@@ -337,7 +337,30 @@ UpdateConfig_xrayr() {
 # Install xrayr
 Install_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
-
+clear
+while true; do
+  echo "-----XrayR của Tài Copy -----"
+  echo "Địa chỉ dự án và tài liệu trợ giúp: Chưa nghĩ ra  "
+  echo "Vui lòng nhập một số để Thực Hiện Câu Lệnh:"
+  for ((i = 1; i <= ${#operation[@]}; i++)); do
+    hint="${operation[$i - 1]}"
+    echo -e "${green}${i}${plain}) ${hint}"
+  done
+  read -p "Vui lòng chọn một số và nhấn Enter (Enter theo mặc định ${operation[0]}):" selected
+  [ -z "${selected}" ] && selected="1"
+  case "${selected}" in
+  1 | 2 | 3 )
+    echo
+    echo "Bắt Đầu : ${operation[${selected} - 1]}"
+    echo
+    ${operation[${selected} - 1]}_xrayr
+    break
+    ;;
+  *)
+    echo -e "[${red}Error${plain}] Vui lòng nhập số chính xác [1-8]"
+    ;;
+  esac
+done
 }
 caidat_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)

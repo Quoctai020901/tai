@@ -149,8 +149,8 @@ read -p "Nhập domain hoặc ip  :" CertDomain
 # Config docker
 config_xrayr() {
   cd ${cur_dir} || exit
-  
-  cat >etc/XrayR/config.yml <<EOF
+  cd /etc/XrayR
+  cat >config.yml <<EOF
 Log:
   Level: none # Log level: none, error, warning, info, debug 
   AccessPath: # /etc/XrayR/access.Log
@@ -241,6 +241,7 @@ UpdateConfig_xrayr() {
   
   pre_install_xrayr
   config_xrayr
+  cd /root
   echo "Bắt đầu chạy dịch vụ "
   xrayr start
 }

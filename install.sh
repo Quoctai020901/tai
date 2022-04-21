@@ -106,7 +106,7 @@ error_detect_depends() {
 # Pre-installation settings
 pre_install_xrayr() {
   #link web:
-read -p "link web(bao gồm https://): " ApiHost
+#read -p "link web(bao gồm https://): " ApiHost
  # [ -z "${ApiHost}" ] && ApiHost="0"
  # echo "-------------------------------"
  # echo "Link web: ${ApiHost}"

@@ -207,8 +207,8 @@ Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
     ApiConfig:
-      ApiHost: "https://4ghatde.me"
-      ApiKey: "phamvanquoctai0209"
+      ApiHost: "https://zingspeed.me"
+      ApiKey: "zingspeedzingspeed"
       NodeID: 41
       NodeType: V2ray # Node type: V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
@@ -275,8 +275,8 @@ Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
     ApiConfig:
-      ApiHost: "https://4ghatde.me"
-      ApiKey: "phamvanquoctai0209"
+      ApiHost: "https://zingspeed.me"
+      ApiKey: "zingspeedzingspeed"
       NodeID: 41
       NodeType: V2ray # Node type: V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
@@ -329,6 +329,7 @@ UpdateConfig_xrayr() {
   config_xrayr
   cd /root
   echo "Bắt đầu chạy dịch vụ "
+  xrayr stop
   xrayr start
 }
 
@@ -364,6 +365,7 @@ done
 }
 caidat_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
+  clear
  pree_install_xrayr
   config_xrayrr
   cd /root

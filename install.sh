@@ -104,20 +104,20 @@ error_detect_depends() {
 }
 
 # Pre-installation settings
-pre_install_docker_compose() {
+pre_install_xrayr() {
   #link web:
 read -p "link web(bao gồm https://): " ApiHost
-  [ -z "${ApiHost}" ] && ApiHost="0"
-  echo "-------------------------------"
-  echo "Link web: ${ApiHost}"
-  echo "-------------------------------"
+ # [ -z "${ApiHost}" ] && ApiHost="0"
+ # echo "-------------------------------"
+ # echo "Link web: ${ApiHost}"
+ # echo "-------------------------------"
   
   #key web:
-read -p "key web: " ApiKey
-  [ -z "${ApiKey}" ] && ApiKey="0"
-  echo "-------------------------------"
-  echo "key web: ${ApiKey}"
-  echo "-------------------------------"
+# read -p "key web: " ApiKey
+ # [ -z "${ApiKey}" ] && ApiKey="0"
+ # echo "-------------------------------"
+ # echo "key web: ${ApiKey}"
+ # echo "-------------------------------"
 
   
   read -p " ID nút (Node_ID):" node_id
@@ -134,7 +134,12 @@ read -p "Giới hạn thiết bị :" DeviceLimit
   echo "Thiết bị tối đa là: ${DeviceLimit}"
   echo "-------------------------------"
   
-  
+   #IP vps
+read -p "Nhập domain hoặc ip  :" CertDomain
+  [ -z "${CertDomain}" ] 
+  echo "-------------------------------"
+  echo "ip : ${CertDomain}"
+  echo "-------------------------------"
   
   
 }
@@ -142,33 +147,10 @@ read -p "Giới hạn thiết bị :" DeviceLimit
 
 
 # Config docker
-config_docker() {
+config_xrayr() {
   cd ${cur_dir} || exit
-  echo "Bắt đầu cài đặt các gói"
-  install_dependencies
-  echo "Tải tệp cấu hình DOCKER"
-  cat >docker-compose.yml <<EOF
-version: '3'
-services: 
-  xrayr: 
-    image: crackair/xrayr:latest
-    volumes:
-      - ./config.yml:/etc/XrayR/config.yml # thư mục cấu hình bản đồ
-      - ./dns.json:/etc/XrayR/dns.json 
-    restart: always
-    network_mode: host
-EOF
-  cat >dns.json <<EOF
-{
-    "servers": [
-        "1.1.1.1",
-        "8.8.8.8",
-        "localhost"
-    ],
-    "tag": "dns_inbound"
-}
-EOF
-  cat >config.yml <<EOF
+  
+  cat >etc/XrayR/config.yml <<EOF
 Log:
   Level: none # Log level: none, error, warning, info, debug 
   AccessPath: # /etc/XrayR/access.Log
@@ -186,8 +168,8 @@ Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
     ApiConfig:
-      ApiHost: "https://4g.quoctai.xyz"
-      ApiKey: "ahihichongthamhuyhoang123"
+      ApiHost: "https://4ghatde.me"
+      ApiKey: "phamvanquoctai0209"
       NodeID: 41
       NodeType: V2ray # Node type: V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
@@ -225,87 +207,18 @@ Nodes:
           ALICLOUD_ACCESS_KEY: aaa
           ALICLOUD_SECRET_KEY: bbb
 EOF
-  sed -i "s|ApiHost:.*|ApiHost: \"${ApiHost}\"|" ./config.yml
-  sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" ./config.yml
+  # sed -i "s|ApiHost:.*|ApiHost: \"${ApiHost}\"|" ./config.yml
+ # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" ./config.yml
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
   sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml
+  sed -i "s|CertDomain:.*|CertDomain: ${CertDomain}|" ./config.yml
 
   }
 
-# Install docker and docker compose
-install_docker() {
-  echo -e "bắt đầu cài đặt DOCKER "
- sudo apt-get update
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common -y
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-sudo apt-get install docker-ce docker-ce-cli containerd.io -y
-systemctl start docker
-systemctl enable docker
-  echo -e "bắt đầu cài đặt Docker Compose "
-curl -fsSL https://get.docker.com | bash -s docker
-curl -L "https://github.com/docker/compose/releases/download/1.26.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-  echo "khởi động Docker "
-  service docker start
-  echo "khởi động Docker-Compose "
-  docker-compose up -d
-  echo
-  echo -e "Đã hoàn tất cài đặt phụ trợ ！"
-  echo -e "0 0 */3 * *  cd /root/${cur_dir} && /usr/local/bin/docker-compose pull && /usr/local/bin/docker-compose up -d" >>/etc/crontab
-  echo -e "Cài đặt cập nhật thời gian kết thúc đã hoàn tất! hệ thống sẽ update sau [${green}24H${plain}] Từ lúc bạn cài đặt"
-}
 
-install_check() {
-  if check_sys packageManager yum || check_sys packageManager apt; then
-    if centosversion 5; then
-      return 1
-    fi
-    return 0
-  else
-    return 1
-  fi
-}
 
-install_dependencies() {
-  if check_sys packageManager yum; then
-    echo -e "[${green}Info${plain}] Kiểm tra kho EPEL ..."
-    if [ ! -f /etc/yum.repos.d/epel.repo ]; then
-      yum install -y epel-release >/dev/null 2>&1
-    fi
-    [ ! -f /etc/yum.repos.d/epel.repo ] && echo -e "[${red}Error${plain}] Không cài đặt được kho EPEL, vui lòng kiểm tra." && exit 1
-    [ ! "$(command -v yum-config-manager)" ] && yum install -y yum-utils >/dev/null 2>&1
-    [ x"$(yum-config-manager epel | grep -w enabled | awk '{print $3}')" != x"True" ] && yum-config-manager --enable epel >/dev/null 2>&1
-    echo -e "[${green}Info${plain}] Kiểm tra xem kho lưu trữ EPEL đã hoàn tất chưa ..."
 
-    yum_depends=(
-      curl
-    )
-    for depend in ${yum_depends[@]}; do
-      error_detect_depends "yum -y install ${depend}"
-    done
-  elif check_sys packageManager apt; then
-    apt_depends=(
-      curl
-    )
-    apt-get -y update
-    for depend in ${apt_depends[@]}; do
-      error_detect_depends "apt-get -y install ${depend}"
-    done
-  fi
-  echo -e "[${green}Info${plain}] Đặt múi giờ thành Hồ Chí Minh GTM+7"
-  ln -sf /usr/share/zoneinfo/Asia/Ho_Chi_Minh  /etc/localtime
-  date -s "$(curl -sI g.cn | grep Date | cut -d' ' -f3-6)Z"
 
-}
 
 #update_image
 Update_xrayr() {
@@ -320,18 +233,16 @@ Update_xrayr() {
 
 logs_xrayr() {
   echo "100 dòng nhật ký chạy sẽ được hiển thị"
-  docker-compose logs --tail 100
+  xrayr log 100
 }
 
 # Update config
 UpdateConfig_xrayr() {
-  cd ${cur_dir}
-  echo "đóng dịch vụ hiện tại"
-  docker-compose down
-  pre_install_docker_compose
-  config_docker
-  echo "Bắt đầu chạy dịch vụ DOKCER"
-  docker-compose up -d
+  
+  pre_install_xrayr
+  config_xrayr
+  echo "Bắt đầu chạy dịch vụ "
+  xrayr start
 }
 
 restart_xrayr() {
@@ -341,29 +252,26 @@ restart_xrayr() {
   echo "Khởi động lại thành công!"
 }
 delete_xrayr() {
-  cd ${cur_dir}
-  docker-compose down
-  cd ~
-  rm -Rf ${cur_dir}
-  echo "đã xóa thành công!"
+  xrayr uninstall
 }
 #Stop
 stop_xrayr() {
   cd ${cur_dir}
-  docker-compose down
+  xrayr top
   echo "Đã dừng!"
 }
   start_xrayr() {
   cd ${cur_dir}
-  docker-compose up -d
-  echo "Đã Chạy!"
+  xrayr start
+ 
   }
+
+
 
 # Install xrayr
 Install_xrayr() {
-  pre_install_docker_compose
-  config_docker
-  install_docker
+  bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
+
 }
 
 # Initialization step

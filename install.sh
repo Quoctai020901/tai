@@ -369,7 +369,7 @@ while true; do
     break
     ;;
   *)
-    echo -e "[${red}Error${plain}] Vui lòng nhập số chính xác"
+    echo -e "[${red}Error${plain}] Vui lòng nhập số chính xác [1-8]"
     ;;
   esac
 done

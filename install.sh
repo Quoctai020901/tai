@@ -265,34 +265,34 @@ EOF
 
 # Update config web chính
 update_web_chinh_xrayr() {
-  xrayr stop
+  
   pre_install
   config_web_chinh
   cd /root
   echo "Bắt đầu chạy dịch vụ "
   
-  xrayr start
+  xrayr restart
 }
 
 # Update config web phụ
 update_web_phu_xrayr() {
-  xrayr stop
+
   pre_install
   config_web_phu
   cd /root
   echo "Bắt đầu chạy dịch vụ "
   
-  xrayr start
+  xrayr restart
 }
 # Update config web zing
 update_zing_xrayr() {
-  xrayr stop
+
   pre_install
   config_zing
   cd /root
   echo "Bắt đầu chạy dịch vụ "
   
-  xrayr start
+  xrayr restart
 }
 
 # Install xrayr web phu

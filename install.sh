@@ -15,7 +15,7 @@ operation=(web_chinh web_phu web_zing update_web_chinh update_web_phu update_zin
 
 
 # Pre-installation settings
-pree_install() {
+pre_install() {
  #link web:
 #read -p "link web(bao gồm https://): " ApiHost
  # [ -z "${ApiHost}" ] && ApiHost="0"
@@ -298,7 +298,7 @@ update_zing_xrayr() {
 # Install xrayr web phu
 web_phu_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
- pree_install
+ pre_install
  config_web_phu
   cd /root
   echo "Bắt đầu chạy dịch vụ "
@@ -309,7 +309,7 @@ web_phu_xrayr() {
 web_chinh_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
   clear
-  pree_install
+  pre_install
   config_web_chinh
   cd /root
   echo "Bắt đầu chạy dịch vụ "
@@ -320,7 +320,7 @@ web_chinh_xrayr() {
 web_zing_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
   clear
- pree_install
+ pre_install
   config_zing
   cd /root
   echo "Bắt đầu chạy dịch vụ "

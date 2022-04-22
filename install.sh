@@ -299,7 +299,7 @@ update_zing_xrayr() {
 web_phu_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
  pree_install
- config_moi
+ config_web_phu
   cd /root
   echo "Bắt đầu chạy dịch vụ "
   xrayr start
@@ -309,7 +309,7 @@ web_phu_xrayr() {
 web_chinh_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
   clear
- pree_install
+  pree_install
   config_web_chinh
   cd /root
   echo "Bắt đầu chạy dịch vụ "

@@ -45,6 +45,14 @@ read -p "Giới hạn thiết bị :" DeviceLimit
   echo "Thiết bị tối đa là: ${DeviceLimit}"
   echo "-------------------------------"
   
+  
+  #giới hạn tốc độ
+read -p "Giới hạn tốc độ :" SpeedLimit
+  [ -z "${SpeedLimit}" ] && SpeedLimit="0"
+  echo "-------------------------------"
+  echo "Tốc Độ tối đa là: ${SpeedLimit}"
+  echo "-------------------------------"
+  
    #IP vps
 read -p "Nhập domain hoặc ip  :" CertDomain
   [ -z "${CertDomain}" ] 
@@ -122,6 +130,7 @@ EOF
  # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" ./config.yml
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
   sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml
+  sed -i "s|SpeedLimit:.*|SpeedLimit: ${SpeedLimit}|" ./config.yml
   sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
 
   }
@@ -190,6 +199,7 @@ EOF
  # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" ./config.yml
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
   sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml
+  sed -i "s|SpeedLimit:.*|SpeedLimit: ${SpeedLimit}|" ./config.yml
   sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
 
   }
@@ -258,6 +268,7 @@ EOF
  # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" ./config.yml
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
   sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml
+  sed -i "s|SpeedLimit:.*|SpeedLimit: ${SpeedLimit}|" ./config.yml
   sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
 
   }
@@ -297,7 +308,7 @@ update_zing_xrayr() {
 
 # Install xrayr web phu
 web_phu_xrayr() {
-  bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
+  bash <(curl -Ls https://raw.githubusercontent.com/Quoctai0209/xrayr/main/install.sh)
  pre_install
  config_web_phu
   cd /root
@@ -307,7 +318,7 @@ web_phu_xrayr() {
 
 # Install xrayr web chính
 web_chinh_xrayr() {
-  bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
+  bash <(curl -Ls https://raw.githubusercontent.com/Quoctai0209/xrayr/main/install.sh)
   clear
   pre_install
   config_web_chinh
@@ -318,7 +329,7 @@ web_chinh_xrayr() {
 
 # Install xrayr web zing
 web_zing_xrayr() {
-  bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
+  bash <(curl -Ls https://raw.githubusercontent.com/Quoctai0209/xrayr/main/install.sh)
   clear
  pre_install
   config_zing

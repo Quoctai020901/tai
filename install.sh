@@ -389,6 +389,7 @@ update_zing_xrayr() {
 # Install xrayr web phu
 web_phu_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/Quoctai0209/xrayr/master/install.sh)
+  clear
  pre_install
  config_web_phu
   cd /root

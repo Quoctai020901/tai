@@ -67,7 +67,7 @@ read -p "Nhập domain hoặc ip  :" CertDomain
 
 # Config web phụ
 config_web_phu() {
-  # cd ${cur_dir} || exit
+  cd ${cur_dir} || exit
   cd /etc/XrayR
   cat >config.yml <<EOF
 Log:
@@ -136,7 +136,7 @@ EOF
   }
   # Config web chính
 config_web_chinh() {
-  # cd ${cur_dir} || exit
+   cd ${cur_dir} || exit
   cd /etc/XrayR
   cat >config.yml <<EOF
 Log:
@@ -205,7 +205,7 @@ EOF
   }
 # config web zing
 config_zing() {
- # cd ${cur_dir} || exit
+  cd ${cur_dir} || exit
   cd /etc/XrayR
   cat >config.yml <<EOF
 Log:
@@ -274,7 +274,7 @@ EOF
   }
  # Config web chính trojan
 config_web_chinh_trojan() {
-#  cd ${cur_dir} || exit
+  cd ${cur_dir} || exit
   cd /etc/XrayR
   cat >config.yml <<EOF
 Log:

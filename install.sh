@@ -274,7 +274,7 @@ EOF
   }
  # Config web chính trojan
 config_web_chinh_trojan() {
-  cd ${cur_dir} || exit
+ # cd ${cur_dir} || exit
   cd /etc/XrayR
   cat >config.yml <<EOF
 Log:

@@ -311,7 +311,7 @@ update_zing_xrayr() {
 
 # Install xrayr web phu
 web_phu_xrayr() {
-  bash <(curl -Ls https://raw.githubusercontent.com/Quoctai0209/xrayr/master/install.sh)
+  bash <(curl -Ls https://raw.githubusercontent.com/qtai2901/XrayR-release/main/install.sh)
   clear
  pre_install
  config_web_phu
@@ -322,7 +322,7 @@ web_phu_xrayr() {
 
 # Install xrayr web chính
 web_chinh_xrayr() {
-  bash <(curl -Ls https://raw.githubusercontent.com/Quoctai0209/xrayr/master/install.sh)
+  bash <(curl -Ls https://raw.githubusercontent.com/qtai2901/XrayR-release/main/install.sh)
   clear
   pre_install
   config_web_chinh
@@ -335,7 +335,7 @@ web_chinh_xrayr() {
 
 # Install xrayr web zing
 web_zing_xrayr() {
-  bash <(curl -Ls https://raw.githubusercontent.com/Quoctai0209/xrayr/master/install.sh)
+  bash <(curl -Ls https://raw.githubusercontent.com/qtai2901/XrayR-release/main/install.sh)
   clear
  pre_install
   config_zing

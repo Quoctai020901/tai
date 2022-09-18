@@ -54,11 +54,11 @@ read -p "Giới hạn tốc độ :" SpeedLimit
   echo "-------------------------------"
   
    #IP vps
-# read -p "Nhập domain hoặc ip  :" CertDomain
-#  [ -z "${CertDomain}" ] 
-#  echo "-------------------------------"
-#  echo "ip : ${CertDomain}"
-#  echo "-------------------------------"
+ read -p "Nhập domain :" CertDomain
+  [ -z "${CertDomain}" ] && CertDomain="0"
+ echo "-------------------------------"
+  echo "ip : ${CertDomain}"
+ echo "-------------------------------"
   
   
 }
@@ -185,7 +185,7 @@ Nodes:
           Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/fallback/ for details.
           ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
       CertConfig:
-        CertMode: dns # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
+        CertMode: file # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
         CertDomain: "node1.test.com" # Domain to cert
         CertFile: /etc/XrayR/cert/node1.test.com.cert # Provided if the CertMode is file
         KeyFile: /etc/XrayR/cert/node1.test.com.key
@@ -200,7 +200,7 @@ EOF
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
   sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml
   sed -i "s|SpeedLimit:.*|SpeedLimit: ${SpeedLimit}|" ./config.yml
- # sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
+  sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
 
   }
 # config web sieure

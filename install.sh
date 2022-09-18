@@ -19,7 +19,7 @@ pre_install() {
  echo -e "[1] 4ghatde.com"
   echo -e "[2] 4g.giare.me"
   echo -e "[3] 4gsieure.net"
-  read -p "Web đang sử dụng:"$ApiHost
+  read -p "Web đang sử dụng:" ApiHost
   if [ "$ApiHost" == "1" ]; then
     api_host="https://4ghatde.com"
   elif [ "$ApiHost" == "2" ]; then

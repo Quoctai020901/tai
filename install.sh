@@ -127,8 +127,8 @@ Nodes:
       CertConfig:
         CertMode: file # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
         CertDomain: "node1.test.com" # Domain to cert
-        CertFile: /etc/XrayR/cert/node1.test.com.cert # Provided if the CertMode is file
-        KeyFile: /etc/XrayR/cert/node1.test.com.key
+        CertFile: /etc/XrayR/4ghatde.crt # Provided if the CertMode is file
+        KeyFile: /etc/XrayR/4ghatde.key
         Provider: alidns # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
         Email: test@me.com
         DNSEnv: # DNS ENV option used by DNS provider
@@ -200,17 +200,6 @@ iwgnzmzrH3LAoZleTtxKE+o=
 EOF
 
   }
-
-
-   #sed -i "s|ApiHost:.*|ApiHost: \"${ApiHost}\"|" ./config.yml
- # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" ./config.yml
-  sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
-  sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml
-  sed -i "s|SpeedLimit:.*|SpeedLimit: ${SpeedLimit}|" ./config.yml
-  sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
-
-  }
-
 
 # Update config 
 update_xrayr() {

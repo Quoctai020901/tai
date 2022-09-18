@@ -9,7 +9,7 @@ red='\033[0;31m'
 green='\033[0;32m'
 #yellow='\033[0;33m'
 plain='\033[0m'
-operation=(web_chinh  web_phu web_zing update_web_chinh update_web_phu update_zing )
+operation=(hatde giare sieure update_hatde update_giare update_sieure )
 # Make sure only root can run our script
 [[ $EUID -ne 0 ]] && echo -e "[${red}Error${plain}] Chưa vào root kìa !, vui lòng xin phép ROOT trước!" && exit 1
 
@@ -65,8 +65,8 @@ read -p "Giới hạn tốc độ :" SpeedLimit
 
 
 
-# Config web phụ
-config_web_phu() {
+# Config giare
+config_giare() {
  # cd ${cur_dir} || exit
   cd /etc/XrayR
   cat >config.yml <<EOF
@@ -134,8 +134,8 @@ EOF
  # sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
 
   }
-  # Config web chính
-config_web_chinh() {
+  # Config hatde
+config_hatde() {
   # cd ${cur_dir} || exit
   cd /etc/XrayR
   cat >config.yml <<EOF
@@ -203,8 +203,8 @@ EOF
  # sed -i "s|CertDomain:.*|CertDomain: \"${CertDomain}\"|" ./config.yml
 
   }
-# config web zing
-config_zing() {
+# config web sieure
+config_sieure() {
  # cd ${cur_dir} || exit
   cd /etc/XrayR
   cat >config.yml <<EOF
@@ -225,8 +225,8 @@ Nodes:
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
     ApiConfig:
-      ApiHost: "https://zingspeed.me"
-      ApiKey: "zingspeedzingspeed"
+      ApiHost: "https://sieurespeed.me"
+      ApiKey: "phamvanquoctai0209"
       NodeID: 41
       NodeType: V2ray # Node type: V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
@@ -274,11 +274,11 @@ EOF
   }
 
 
-# Update config web chính
-update_web_chinh_xrayr() {
+# Update config hatde
+update_hatde_xrayr() {
   
   pre_install
-  config_web_chinh
+  config_hatde
   cd /root
   echo "Bắt đầu chạy dịch vụ "
   
@@ -288,21 +288,21 @@ update_web_chinh_xrayr() {
 
 
 
-# Update config web phụ
-update_web_phu_xrayr() {
+# Update config giare
+update_giare_xrayr() {
 
   pre_install
-  config_web_phu
+  config_giare
   cd /root
   echo "Bắt đầu chạy dịch vụ "
   
   xrayr restart
 }
-# Update config web zing
-update_zing_xrayr() {
+# Update config web sieure
+update_sieure_xrayr() {
 
   pre_install
-  config_zing
+  config_sieure
   cd /root
   echo "Bắt đầu chạy dịch vụ "
   
@@ -310,22 +310,22 @@ update_zing_xrayr() {
 }
 
 # Install xrayr web phu
-web_phu_xrayr() {
+giare_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/qtai2901/XrayR-release/main/install.sh)
   clear
  pre_install
- config_web_phu
+ config_giare
   cd /root
   echo "Bắt đầu chạy dịch vụ "
   xrayr start
 }
 
-# Install xrayr web chính
-web_chinh_xrayr() {
+# Install xrayr hatde
+hatde_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/qtai2901/XrayR-release/main/install.sh)
   clear
   pre_install
-  config_web_chinh
+  config_hatde
   cd /root
   echo "Bắt đầu chạy dịch vụ "
   xrayr start
@@ -333,12 +333,12 @@ web_chinh_xrayr() {
 
 
 
-# Install xrayr web zing
-web_zing_xrayr() {
+# Install xrayr web sieure
+sieure_xrayr() {
   bash <(curl -Ls https://raw.githubusercontent.com/qtai2901/XrayR-release/main/install.sh)
   clear
  pre_install
-  config_zing
+  config_sieure
   cd /root
   echo "Bắt đầu chạy dịch vụ "
   xrayr start

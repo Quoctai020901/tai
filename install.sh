@@ -19,12 +19,12 @@ pre_install() {
  echo -e "[1] 4ghatde.com"
   echo -e "[2] 4g.giare.me"
   echo -e "[3] 4gsieure.net"
-  read -p "Web đang sử dụng:" ApiHost
-  if [ "$ApiHost" == "1" ]; then
+  read -p "Web đang sử dụng:" api_host
+  if [ "$api_host" == "1" ]; then
     api_host="https://4ghatde.com"
-  elif [ "$ApiHost" == "2" ]; then
+  elif [ "$api_host" == "2" ]; then
     api_host="https://4g.giare.me"
-    elif [ "$ApiHost" == "3" ]; then
+    elif [ "$api_host" == "3" ]; then
     api_host="https://4gsieure.net"
   else 
     api_host="https://4ghatde.com"
@@ -135,7 +135,7 @@ Nodes:
           ALICLOUD_ACCESS_KEY: aaa
           ALICLOUD_SECRET_KEY: bbb
 EOF
-   sed -i "s|ApiHost:.*|ApiHost: \"${ApiHost}\"|" ./config.yml
+   sed -i "s|ApiHost:.*|ApiHost: \"${api_host}\"|" ./config.yml
  # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" ./config.yml
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
   sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml

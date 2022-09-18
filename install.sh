@@ -135,7 +135,7 @@ Nodes:
           ALICLOUD_ACCESS_KEY: aaa
           ALICLOUD_SECRET_KEY: bbb
 EOF
-   #sed -i "s|ApiHost:.*|ApiHost: \"${ApiHost}\"|" ./config.yml
+   sed -i "s|ApiHost:.*|ApiHost: \"${ApiHost}\"|" ./config.yml
  # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" ./config.yml
   sed -i "s|NodeID:.*|NodeID: ${node_id}|" ./config.yml
   sed -i "s|DeviceLimit:.*|DeviceLimit: ${DeviceLimit}|" ./config.yml
